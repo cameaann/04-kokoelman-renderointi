@@ -9,7 +9,7 @@ const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("a new note...");
   const [showAll, setShowAll] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("some error happened...");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     noteService.getAll().then((initialNotes) => setNotes(initialNotes));
@@ -23,6 +23,15 @@ const App = () => {
 
   const addNote = (event) => {
     event.preventDefault();
+    if (newNote.length === 0) {
+      console.log(newNote);
+      setErrorMessage("You haven't written anything");
+
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 4000);
+      return;
+    }
     const noteObject = {
       content: newNote,
       important: Math.random() < 0.5,
@@ -35,7 +44,6 @@ const App = () => {
   };
 
   const handleNoteChange = (event) => {
-    console.log(event.target.value);
     setNewNote(event.target.value);
   };
 
@@ -48,7 +56,7 @@ const App = () => {
       .then((returnedNote) => {
         setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)));
       })
-      .catch(error => {
+      .catch((error) => {
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
         );
@@ -62,7 +70,7 @@ const App = () => {
   return (
     <div>
       <h1>Notes</h1>
-      <Notification message={errorMessage} />
+      {errorMessage && <Notification message={errorMessage} />}
       <div>
         <button onClick={() => setShowAll(!showAll)}>
           show {showAll ? "important" : "all"}
@@ -84,9 +92,11 @@ const App = () => {
           onChange={handleNoteChange}
           onFocus={(e) => (e.target.value = "")}
         />
-        <button type="submit">Save</button>
+        <button className="btn" type="submit">
+          Save
+        </button>
       </form>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

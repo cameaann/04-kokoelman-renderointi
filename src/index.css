@@ -1,3 +1,10 @@
+html{
+  font-size: 62.5%;
+}
+body{
+  font-size: 1.6rem;
+  padding: 2rem;
+}
 h1{
     color: green;
     font-style: italic;
@@ -5,8 +12,8 @@ h1{
 
 .note {
     color: grey;
-    padding-top: 5px;
-    font-size: 15px;
+    padding-top: .5rem;
+    font-size: 1.5rem;
   }
 .note>span{
     margin-inline-end: 1rem;
@@ -15,9 +22,13 @@ h1{
 .error {
     color: red;
     background: lightgrey;
-    font-size: 20px;
+    font-size: 2rem;
     border-style: solid;
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
   }
+
+.btn{
+  margin-inline-start: 2rem;
+}
