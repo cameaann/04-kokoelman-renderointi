@@ -12,7 +12,10 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    noteService.getAll().then((initialNotes) => setNotes(initialNotes));
+    noteService.getAll().then((initialNotes) => 
+    {
+      setNotes(initialNotes)
+    });
   }, []);
 
   console.log("render", notes.length, "notes");
