@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState("a new note...");
+  const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -93,6 +93,7 @@ const App = () => {
           type="text"
           value={newNote}
           onChange={handleNoteChange}
+          placeholder="a new note..."
           onFocus={(e) => (e.target.value = "")}
         />
         <button className="btn" type="submit">
