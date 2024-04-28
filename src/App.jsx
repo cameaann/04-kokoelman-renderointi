@@ -10,12 +10,17 @@ const App = () => {
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    noteService.getAll().then((initialNotes) => 
-    {
-      setNotes(initialNotes)
-    });
+    try {
+      noteService.getAll().then((initialNotes) => {
+        setNotes(initialNotes);
+        setLoading(false);
+      });
+    } catch (error) {
+      console.error();
+    }
   }, []);
 
   console.log("render", notes.length, "notes");
@@ -79,6 +84,12 @@ const App = () => {
           show {showAll ? "important" : "all"}
         </button>
       </div>
+      {loading && (
+        <div className="loading-box">
+          <span className="loader"></span>
+          <div>Connecting to server</div>
+        </div>
+      )}
       <ul>
         {notesToShow.map((note) => (
           <Note

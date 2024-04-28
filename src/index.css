@@ -32,3 +32,33 @@ h1{
 .btn{
   margin-inline-start: 2rem;
 }
+
+.loading-box{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin-block-start: 2rem;
+  margin-block-end: 2rem;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #f5ecec;
+  border-bottom-color: #0048ff;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  align-self: center;
+  margin-inline-end: 1rem;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
